@@ -4,11 +4,11 @@
   <!-- credit: https://gist.github.com/codeincontext/3862543 -->
   <title>iOS6 Safari Photo Capture Demo</title>
 
+  <!-- printing? https://developer.mozilla.org/en-US/docs/Web/Guide/Printing -->
+  <!-- <link href="print.css" rel="stylesheet" /> -->
+  <link href="print.css" media="print" rel="stylesheet" />
+
   <script type="text/javascript">
-    window.onload = function() {
-      var input = document.getElementById("input");
-      input.addEventListener("change", handleFile);
-    }
 
     function handleFile(e) {
         var canvas = document.getElementById('canvas');
@@ -68,12 +68,24 @@
 
       ctx.putImageData(imageData, 0, 0);
     }
+
+    window.onload = () => {
+      var input = document.getElementById("input");
+      input.addEventListener("change", handleFile);
+
+      const printBtn = document.getElementById("print");
+      printBtn.onclick = () => {
+        window.print();
+      }
+    };
   </script>
 </head>
 <body>
   <h1>iOS6 Safari Photo Capture Demo</h1>
   <input type="file" id="input" name="input" accept="image/*" multiple></input>
   <canvas id="canvas"></canvas>
+
+  <button id="print" >print</button>
 
 </body>
 </html>
